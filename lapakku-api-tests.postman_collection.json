@@ -1,0 +1,228 @@
+{
+  "info": {
+    "name": "Lapakku API Tests",
+    "description": "End-to-end API test collection for the Lapakku e-commerce platform. Covers auth, product browse, cart, and checkout flows with automated assertions and chained variables.\n\nAuthor: Muhamad Fazza Muharam\nVersion: 1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.lapakku.dev/v1" },
+    { "key": "accessToken", "value": "" },
+    { "key": "userId", "value": "" },
+    { "key": "cartId", "value": "" },
+    { "key": "productId", "value": "SKU-7821" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "POST /auth/login - valid credentials",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response schema is valid', function () {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json).to.have.property('accessToken').that.is.a('string');",
+                  "  pm.expect(json).to.have.property('refreshToken').that.is.a('string');",
+                  "  pm.expect(json).to.have.property('user').that.is.an('object');",
+                  "  pm.expect(json.user).to.have.property('id');",
+                  "});",
+                  "",
+                  "pm.test('Response time < 800ms', function () {",
+                  "  pm.expect(pm.response.responseTime).to.be.below(800);",
+                  "});",
+                  "",
+                  "const body = pm.response.json();",
+                  "pm.collectionVariables.set('accessToken', body.accessToken);",
+                  "pm.collectionVariables.set('userId', body.user.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"qa-tester@lapakku.dev\",\n  \"password\": \"Qa!Test1234\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+          }
+        },
+        {
+          "name": "POST /auth/login - invalid password (negative)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 401', function () {",
+                  "  pm.response.to.have.status(401);",
+                  "});",
+                  "",
+                  "pm.test('Error code is INVALID_CREDENTIALS', function () {",
+                  "  pm.expect(pm.response.json().error.code).to.eql('INVALID_CREDENTIALS');",
+                  "});",
+                  "",
+                  "pm.test('No token leaked in error response', function () {",
+                  "  const txt = pm.response.text();",
+                  "  pm.expect(txt).to.not.include('accessToken');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"qa-tester@lapakku.dev\",\n  \"password\": \"wrong-password\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "GET /products/{id} - fetch product detail",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test('Product fields are present', () => {",
+                  "  const p = pm.response.json();",
+                  "  pm.expect(p).to.include.all.keys('id', 'name', 'price', 'stock', 'sellerId');",
+                  "  pm.expect(p.price).to.be.a('number').and.to.be.above(0);",
+                  "  pm.expect(p.stock).to.be.a('number').and.to.be.at.least(0);",
+                  "});",
+                  "",
+                  "pm.test('Image URLs use HTTPS', () => {",
+                  "  const p = pm.response.json();",
+                  "  (p.images || []).forEach(url => pm.expect(url).to.match(/^https:\\/\\//));",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+            "url": {
+              "raw": "{{baseUrl}}/products/{{productId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "{{productId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cart",
+      "item": [
+        {
+          "name": "POST /cart/items - add product to cart",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 201', () => pm.response.to.have.status(201));",
+                  "",
+                  "const cart = pm.response.json();",
+                  "pm.collectionVariables.set('cartId', cart.id);",
+                  "",
+                  "pm.test('Cart contains the added product', () => {",
+                  "  const item = cart.items.find(i => i.productId === pm.collectionVariables.get('productId'));",
+                  "  pm.expect(item).to.exist;",
+                  "  pm.expect(item.quantity).to.eql(2);",
+                  "});",
+                  "",
+                  "pm.test('Subtotal matches qty * unitPrice', () => {",
+                  "  const item = cart.items.find(i => i.productId === pm.collectionVariables.get('productId'));",
+                  "  pm.expect(item.subtotal).to.eql(item.quantity * item.unitPrice);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"{{productId}}\",\n  \"quantity\": 2\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/cart/items", "host": ["{{baseUrl}}"], "path": ["cart", "items"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Checkout",
+      "item": [
+        {
+          "name": "POST /orders - create order with voucher",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 201', () => pm.response.to.have.status(201));",
+                  "",
+                  "const order = pm.response.json();",
+                  "",
+                  "pm.test('Voucher discount applies to subtotal, not shipping (BUG-01 regression)', () => {",
+                  "  pm.expect(order.discount.appliedTo).to.eql('subtotal');",
+                  "  pm.expect(order.shippingFee).to.eql(order.shippingFeeOriginal);",
+                  "});",
+                  "",
+                  "pm.test('Grand total = subtotal - discount + shipping', () => {",
+                  "  const expected = order.subtotal - order.discount.amount + order.shippingFee;",
+                  "  pm.expect(order.grandTotal).to.eql(expected);",
+                  "});",
+                  "",
+                  "pm.test('Order status is AWAITING_PAYMENT', () => {",
+                  "  pm.expect(order.status).to.eql('AWAITING_PAYMENT');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cartId\": \"{{cartId}}\",\n  \"voucherCode\": \"LAPAK10\",\n  \"paymentMethod\": \"COD\",\n  \"shippingAddressId\": \"addr_001\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/orders", "host": ["{{baseUrl}}"], "path": ["orders"] }
+          }
+        }
+      ]
+    }
+  ]
+}

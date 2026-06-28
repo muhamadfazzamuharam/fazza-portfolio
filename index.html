@@ -1,0 +1,2326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Muhamad Fazza Muharam — Software Quality Assurance. 2+ years across web and mobile. Manual, API, and automation testing." />
+<title>Muhamad Fazza Muharam — Software Quality Assurance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --surface: #ffffff;
+    --surface-soft: #f1f3f7;
+    --border: rgba(15, 23, 42, 0.08);
+    --border-strong: rgba(15, 23, 42, 0.16);
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #1e3a8a;
+    --accent-soft: #e0e7ff;
+    --accent-text: #1e3a8a;
+    --success-bg: #dcfce7;
+    --success-text: #166534;
+    --warning-bg: #fef3c7;
+    --warning-text: #92400e;
+    --danger-bg: #fee2e2;
+    --danger-text: #991b1b;
+    --neutral-bg: #f1f5f9;
+    --neutral-text: #334155;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --container: 1080px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Header / nav */
+  header.site {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(247, 248, 250, 0.85);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+  .brand-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-right: 8px;
+    vertical-align: 1px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    font-size: 14px;
+  }
+  .nav-links a {
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--text-primary); text-decoration: none; }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* Containers */
+  section { padding: 80px 24px; }
+  .wrap { max-width: var(--container); margin: 0 auto; }
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section-label::before {
+    content: '';
+    width: 24px;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+  h1, h2, h3 { letter-spacing: -0.02em; line-height: 1.2; margin: 0; }
+  h1 { font-size: clamp(36px, 5vw, 56px); font-weight: 700; }
+  h2 { font-size: clamp(26px, 3.2vw, 34px); font-weight: 600; }
+  h3 { font-size: 18px; font-weight: 600; }
+  .section-title { margin-bottom: 12px; }
+  .section-sub { color: var(--text-secondary); font-size: 16px; max-width: 640px; margin-bottom: 40px; }
+
+  /* Hero */
+  .hero {
+    padding: 96px 24px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle at center, rgba(99, 102, 241, 0.12), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -160px;
+    left: -160px;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.08), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero .wrap { position: relative; z-index: 1; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  @media (max-width: 820px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 24px; }
+    .hero-visual { order: -1; max-width: 400px; margin: 0 auto; }
+  }
+  .hero-visual {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    max-width: 420px;
+    margin-left: auto;
+  }
+  .hero-visual svg { width: 100%; height: 100%; display: block; }
+  .hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--success-bg);
+    color: var(--success-text);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 999px;
+    margin-bottom: 24px;
+  }
+  .hero-status::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--success-text);
+  }
+  .hero-tagline {
+    color: var(--text-secondary);
+    font-size: 18px;
+    max-width: 600px;
+    margin: 20px 0 32px;
+  }
+  .hero-role {
+    display: block;
+    font-size: 18px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-top: 12px;
+  }
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.15s ease;
+    text-decoration: none;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+  .btn-primary:hover { background: #1e40af; text-decoration: none; }
+  .btn-secondary {
+    background: var(--surface);
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+  }
+  .btn-secondary:hover { background: var(--surface-soft); text-decoration: none; }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .about-text p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin: 0 0 16px;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--stat-accent, var(--accent));
+  }
+  .stat-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--stat-bg, var(--accent-soft));
+    color: var(--stat-accent, var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 12px;
+  }
+  .stat-icon svg { width: 18px; height: 18px; }
+  .stat-num {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* Skills */
+  .skills-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .skill-card:hover { border-color: var(--border-strong); transform: translateY(-1px); }
+  .skill-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .skill-ico {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--skill-bg, var(--accent-soft));
+    color: var(--skill-accent, var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .skill-ico svg { width: 18px; height: 18px; }
+  .skill-card h3 {
+    font-size: 13px;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    margin: 0;
+  }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    background: var(--neutral-bg);
+    color: var(--neutral-text);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+  .tag-accent { background: var(--accent-soft); color: var(--accent-text); }
+
+  /* Suite cards */
+  .suite-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    margin-top: 8px;
+  }
+  .suite-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .suite-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  }
+  .suite-cover {
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 60%, #a5b4fc 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .suite-cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(255,255,255,0.4) 0, transparent 35%),
+      radial-gradient(circle at 80% 80%, rgba(255,255,255,0.3) 0, transparent 40%);
+    pointer-events: none;
+  }
+  .suite-cover-mock {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .suite-cover-mock svg { width: 100%; height: 100%; }
+  .suite-cover-meta {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent-text);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 600;
+    z-index: 2;
+  }
+  .suite-cover-meta span {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 4px 10px;
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+  }
+
+  /* Type label badge on suite cards */
+  .suite-type {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 3;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 5px 11px;
+    border-radius: 999px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--type-bg, rgba(255, 255, 255, 0.9));
+    color: var(--type-fg, var(--accent));
+    backdrop-filter: blur(6px);
+  }
+
+  /* Cover color variants */
+  .suite-cover.cover-red {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 60%, #fca5a5 100%);
+  }
+  .suite-cover.cover-teal {
+    background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 60%, #5eead4 100%);
+  }
+  .suite-cover.cover-purple {
+    background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 60%, #c4b5fd 100%);
+  }
+  .suite-cover.cover-red .suite-cover-meta { color: #991b1b; }
+  .suite-cover.cover-teal .suite-cover-meta { color: #115e59; }
+  .suite-cover.cover-purple .suite-cover-meta { color: #5b21b6; }
+
+  /* Download button inside modal */
+  .modal-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: white;
+    padding: 10px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 12px;
+    transition: background 0.15s ease;
+  }
+  .modal-download:hover { background: #1e40af; text-decoration: none; }
+  .modal-download svg { width: 16px; height: 16px; }
+  .suite-icon {
+    width: 64px; height: 64px;
+    color: var(--accent);
+    opacity: 0.6;
+  }
+  .suite-body {
+    padding: 20px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .suite-body h3 { font-size: 17px; margin-bottom: 4px; }
+  .suite-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0 0 12px;
+    font-weight: 500;
+  }
+  .suite-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0 0 14px;
+    line-height: 1.55;
+  }
+  .suite-cta {
+    margin-top: auto;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    padding-top: 12px;
+  }
+  .suite-card-empty { cursor: default; border-style: dashed; }
+  .suite-card-empty:hover { transform: none; border-color: var(--border-strong); box-shadow: none; }
+  .suite-card-empty .suite-cover {
+    background: var(--surface-soft);
+  }
+  .suite-card-empty .suite-icon { color: var(--text-muted); opacity: 0.4; }
+  .suite-card-empty .suite-cover-meta span {
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--text-muted);
+  }
+
+  /* Modal */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    overflow-y: auto;
+    padding: 40px 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  body.modal-open { overflow: hidden; }
+  .modal-container {
+    background: var(--surface);
+    border-radius: 16px;
+    max-width: 920px;
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 24px 64px rgba(15, 23, 42, 0.2);
+    overflow: hidden;
+    animation: modalIn 0.22s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .modal-head {
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    background: var(--surface);
+    z-index: 5;
+  }
+  .modal-head h2 { font-size: 22px; margin-bottom: 4px; }
+  .modal-head p { margin: 0; font-size: 14px; color: var(--text-secondary); }
+  .modal-close {
+    background: var(--surface-soft);
+    border: none;
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s ease;
+    font-family: inherit;
+  }
+  .modal-close:hover { background: var(--neutral-bg); color: var(--text-primary); }
+  .modal-body { padding: 0; }
+  .modal-section {
+    padding: 32px 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .modal-section:last-child { border-bottom: none; }
+  .modal-section-num {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .modal-section-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+  }
+  .modal-section h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 24px 0 8px;
+  }
+  .modal-section p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin: 0 0 8px;
+    line-height: 1.6;
+  }
+  .breakdown-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    font-size: 14px;
+  }
+  .breakdown-table th,
+  .breakdown-table td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .breakdown-table th {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+  }
+  .breakdown-table td.num { font-family: var(--font-mono); font-weight: 500; text-align: right; }
+  .breakdown-bar {
+    display: inline-block;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 999px;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  /* Data tables (summary + test cases) */
+  .table-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin: 8px 0 16px;
+    background: var(--surface);
+  }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .data-table th {
+    background: var(--surface-soft);
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table td.key {
+    font-weight: 600;
+    color: var(--text-primary);
+    width: 200px;
+    background: var(--surface-soft);
+  }
+  .data-table td.num {
+    font-family: var(--font-mono);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* Test case table specifics */
+  .tc-table { min-width: 1080px; }
+  .tc-table td.id-col {
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    font-weight: 500;
+    width: 60px;
+    white-space: nowrap;
+  }
+  .tc-table td.scenario-col {
+    color: var(--text-primary);
+    font-weight: 500;
+    width: 200px;
+  }
+  .tc-table td.desc-col { width: 200px; }
+  .tc-table td.steps-col { width: 240px; }
+  .tc-table td.expected-col { width: 200px; }
+  .tc-table td.status-col { width: 80px; text-align: center; }
+  .tc-table ol { margin: 0; padding-left: 18px; }
+  .tc-table ol li { margin-bottom: 2px; }
+  .tc-table tr.group-row td {
+    background: var(--accent-soft);
+    color: var(--accent-text);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 10px 14px;
+  }
+
+  /* Test case summary bar */
+  .tc-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .tc-stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .tc-num { font-size: 24px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.02em; }
+  .tc-lbl { font-size: 12px; color: var(--text-muted); margin-top: 2px; font-weight: 500; }
+
+  /* Expand/collapse controls */
+  .tc-controls { display: flex; gap: 8px; margin-bottom: 20px; }
+  .tc-btn {
+    background: var(--surface);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-strong);
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s ease;
+  }
+  .tc-btn:hover { color: var(--text-primary); background: var(--surface-soft); }
+
+  /* Group header between artifact grids */
+  .tc-group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 28px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tc-group-header:first-of-type { margin-top: 8px; }
+  .tc-group-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .tc-group-count {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* Artifact cards (test cases / bugs) */
+  .artifact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .artifact {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.15s ease;
+  }
+  .artifact:hover { border-color: var(--border-strong); }
+  .artifact-head {
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    gap: 16px;
+    user-select: none;
+  }
+  .artifact-head:hover { background: var(--surface-soft); }
+  .artifact-title-row { flex: 1; min-width: 0; }
+  .artifact-id {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .artifact-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+  .badge-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+  }
+  .b-pass { background: var(--success-bg); color: var(--success-text); }
+  .b-fail { background: var(--danger-bg); color: var(--danger-text); }
+  .b-fixed { background: var(--success-bg); color: var(--success-text); }
+  .b-open { background: var(--danger-bg); color: var(--danger-text); }
+  .b-high { background: var(--danger-bg); color: var(--danger-text); }
+  .b-med { background: var(--warning-bg); color: var(--warning-text); }
+  .b-low { background: var(--neutral-bg); color: var(--neutral-text); }
+  .b-module { background: var(--accent-soft); color: var(--accent-text); }
+  .chevron {
+    color: var(--text-muted);
+    font-size: 18px;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+  .artifact.open .chevron { transform: rotate(180deg); }
+  .artifact-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    border-top: 1px solid transparent;
+  }
+  .artifact.open .artifact-body {
+    max-height: 2000px;
+    border-top-color: var(--border);
+  }
+  .artifact-inner { padding: 20px 24px 24px; }
+  .field-grid {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 8px 20px;
+    font-size: 14px;
+  }
+  @media (max-width: 600px) { .field-grid { grid-template-columns: 1fr; gap: 4px 0; } }
+  .field-label {
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 13px;
+  }
+  .field-val {
+    color: var(--text-primary);
+  }
+  .field-val ol, .field-val ul {
+    margin: 4px 0 0;
+    padding-left: 20px;
+  }
+  .field-val li { margin-bottom: 4px; color: var(--text-secondary); }
+  .field-val.code {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background: var(--surface-soft);
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: var(--text-primary);
+  }
+
+  /* Code blocks */
+  .code-block {
+    position: relative;
+    background: #0f172a;
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-top: 16px;
+  }
+  .code-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .code-file {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: #cbd5e1;
+  }
+  .code-actions { display: flex; gap: 8px; }
+  .code-btn {
+    background: rgba(255, 255, 255, 0.08);
+    color: #e2e8f0;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .code-btn:hover { background: rgba(255, 255, 255, 0.16); }
+  .code-btn a { color: inherit; text-decoration: none; }
+  pre.code {
+    margin: 0;
+    padding: 16px 20px;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #e2e8f0;
+  }
+  pre.code .c-key { color: #93c5fd; }
+  pre.code .c-str { color: #86efac; }
+  pre.code .c-com { color: #64748b; font-style: italic; }
+  pre.code .c-fn { color: #fbbf24; }
+  pre.code .c-num { color: #f9a8d4; }
+
+  /* Experience timeline */
+  .timeline {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+  }
+  @media (max-width: 720px) { .timeline { grid-template-columns: 1fr; gap: 0; } }
+  .tl-entry {
+    display: contents;
+  }
+  .tl-period {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+    padding-top: 4px;
+  }
+  .tl-content {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+  .tl-role {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .tl-company {
+    font-size: 14px;
+    color: var(--accent);
+    margin-top: 2px;
+    font-weight: 500;
+  }
+  .tl-bullets {
+    margin: 12px 0 0;
+    padding-left: 20px;
+  }
+  .tl-bullets li {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  /* Contact */
+  .contact-section { background: var(--surface); border-top: 1px solid var(--border); }
+  .contact-card {
+    text-align: center;
+    padding: 40px 24px;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .contact-card h2 { margin-bottom: 12px; }
+  .contact-card p { color: var(--text-secondary); margin-bottom: 24px; }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .contact-link:hover { border-color: var(--accent); text-decoration: none; transform: translateY(-1px); }
+  .contact-ico {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-ico svg { width: 18px; height: 18px; }
+  .contact-meta { flex: 1; text-align: left; }
+  .contact-label { color: var(--text-muted); font-size: 12px; font-weight: 500; display: block; margin-bottom: 2px; }
+  .contact-value { color: var(--text-primary); font-size: 14px; font-weight: 500; }
+
+  /* Footer */
+  footer.site {
+    padding: 32px 24px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+  }
+  footer.site .dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin: 0 8px;
+    vertical-align: 2px;
+  }
+
+  /* Toast for copy feedback */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--text-primary);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    z-index: 100;
+    opacity: 0;
+    transition: all 0.25s ease;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav">
+    <div class="brand"><span class="brand-dot"></span>fazza.qa</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="hero-status">Open to QA roles</div>
+        <h1>Muhamad Fazza Muharam</h1>
+        <span class="hero-role">Software Quality Assurance</span>
+        <p class="hero-tagline">
+          2+ years delivering product quality across web and mobile. Manual testing, API validation, data validation, and automation — with a focus on clear documentation and clean handoff.
+        </p>
+        <div class="btn-row">
+          <a href="#contact" class="btn btn-primary">Get in touch</a>
+          <a href="#test-cases" class="btn btn-secondary">See the work</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="cardshadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#1e3a8a" flood-opacity="0.14"/>
+            </filter>
+          </defs>
+
+          <!-- Background blobs -->
+          <circle cx="340" cy="60" r="60" fill="#c7d2fe" opacity="0.5"/>
+          <circle cx="50" cy="340" r="48" fill="#bbf7d0" opacity="0.4"/>
+
+          <!-- Floating accent dots -->
+          <circle cx="380" cy="220" r="5" fill="#1e3a8a" opacity="0.18"/>
+          <circle cx="20" cy="180" r="3" fill="#1e3a8a" opacity="0.18"/>
+          <circle cx="360" cy="360" r="4" fill="#16a34a" opacity="0.2"/>
+          <circle cx="30" cy="80" r="3" fill="#1e3a8a" opacity="0.12"/>
+
+          <!-- Card 1: Test case (back, tilted left) -->
+          <g transform="translate(30 60) rotate(-7 110 60)" filter="url(#cardshadow)">
+            <rect width="220" height="120" rx="14" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+            <rect x="18" y="18" width="58" height="8" rx="3" fill="#1e3a8a"/>
+            <text x="18" y="52" font-size="13" font-weight="600" fill="#0f172a" font-family="Inter, sans-serif">TC-292 · Archive list</text>
+            <rect x="18" y="64" width="180" height="5" rx="2" fill="#cbd5e1"/>
+            <rect x="18" y="76" width="140" height="5" rx="2" fill="#cbd5e1" opacity="0.6"/>
+            <rect x="18" y="94" width="46" height="18" rx="9" fill="#dcfce7"/>
+            <text x="41" y="106" text-anchor="middle" font-size="10" font-weight="600" fill="#166534" font-family="Inter, sans-serif">Pass</text>
+          </g>
+
+          <!-- Card 2: Bug report (middle, tilted right) -->
+          <g transform="translate(165 175) rotate(8 100 55)" filter="url(#cardshadow)">
+            <rect width="210" height="115" rx="14" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+            <rect x="18" y="18" width="58" height="8" rx="3" fill="#991b1b"/>
+            <text x="18" y="52" font-size="13" font-weight="600" fill="#0f172a" font-family="Inter, sans-serif">BUG-01 · Voucher</text>
+            <rect x="18" y="64" width="170" height="5" rx="2" fill="#cbd5e1"/>
+            <rect x="18" y="76" width="130" height="5" rx="2" fill="#cbd5e1" opacity="0.6"/>
+            <rect x="18" y="92" width="42" height="18" rx="9" fill="#fee2e2"/>
+            <text x="39" y="104" text-anchor="middle" font-size="10" font-weight="600" fill="#991b1b" font-family="Inter, sans-serif">High</text>
+            <rect x="68" y="92" width="58" height="18" rx="9" fill="#fef3c7"/>
+            <text x="97" y="104" text-anchor="middle" font-size="10" font-weight="600" fill="#92400e" font-family="Inter, sans-serif">Checkout</text>
+          </g>
+
+          <!-- Card 3: Stats (front, straight) -->
+          <g transform="translate(60 285)" filter="url(#cardshadow)">
+            <rect width="280" height="90" rx="14" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+            <text x="20" y="42" font-size="30" font-weight="700" fill="#1e3a8a" font-family="Inter, sans-serif" letter-spacing="-1">100%</text>
+            <text x="20" y="62" font-size="11" font-weight="500" fill="#475569" font-family="Inter, sans-serif">Pass rate · 34 / 34 cases</text>
+            <rect x="20" y="72" width="240" height="5" rx="2.5" fill="#e2e8f0"/>
+            <rect x="20" y="72" width="240" height="5" rx="2.5" fill="#16a34a"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="wrap">
+    <span class="section-label">About</span>
+    <h2 class="section-title">QA for web and mobile, end to end</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a QA based in Bekasi, Indonesia. I've spent the last two years owning quality for SaaS and client projects — designing test scenarios from PRDs, running SIT and UAT cycles, validating APIs in Postman, querying data in SQL and MongoDB, and reporting bugs with the detail developers actually need to fix them.
+        </p>
+        <p>
+          I work well in client-facing roles: presenting product flows, coordinating SIT with stakeholders, and training end users across roles. Right now I'm deepening automation with Selenium + JavaScript and performance testing with JMeter.
+        </p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat" style="--stat-accent: #1e3a8a; --stat-bg: #e0e7ff;">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+          <div class="stat-num">2+</div>
+          <div class="stat-label">Years experience</div>
+        </div>
+        <div class="stat" style="--stat-accent: #0f766e; --stat-bg: #ccfbf1;">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5L12 21l7.5-4.5M4.5 12L12 16.5 19.5 12M12 3L4.5 7.5 12 12l7.5-4.5L12 3z"/></svg></div>
+          <div class="stat-num">7+</div>
+          <div class="stat-label">Projects shipped</div>
+        </div>
+        <div class="stat" style="--stat-accent: #b45309; --stat-bg: #fef3c7;">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+          <div class="stat-num">800+</div>
+          <div class="stat-label">Test scenarios designed</div>
+        </div>
+        <div class="stat" style="--stat-accent: #b91c1c; --stat-bg: #fee2e2;">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2l1.88 1.88M14.12 3.88L16 2M9 7.13v-1a3.003 3.003 0 116 0v1M12 20v-9M6.53 9C4.6 8.8 3 7.1 3 5M6.53 15C4.6 15.2 3 16.9 3 19M17.47 9c1.93-.2 3.53-1.9 3.53-4M17.47 15c1.93.2 3.53 1.9 3.53 4"/></svg></div>
+          <div class="stat-num">50+</div>
+          <div class="stat-label">Bugs triaged per cycle</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills" class="skills-section">
+  <div class="wrap">
+    <span class="section-label">Skills &amp; tools</span>
+    <h2 class="section-title">What I work with</h2>
+    <p class="section-sub">The toolkit, grouped the way I'd reach for them on the job.</p>
+    <div class="skill-grid">
+      <div class="skill-card" style="--skill-accent: #1e3a8a; --skill-bg: #e0e7ff;">
+        <div class="skill-head">
+          <div class="skill-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+          <h3>Testing</h3>
+        </div>
+        <div class="tag-row">
+          <span class="tag tag-accent">Manual testing</span>
+          <span class="tag tag-accent">Test case design</span>
+          <span class="tag tag-accent">SIT &amp; UAT</span>
+          <span class="tag tag-accent">Regression</span>
+          <span class="tag tag-accent">Bug reporting</span>
+        </div>
+      </div>
+      <div class="skill-card" style="--skill-accent: #6d28d9; --skill-bg: #ede9fe;">
+        <div class="skill-head">
+          <div class="skill-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <h3>Automation</h3>
+        </div>
+        <div class="tag-row">
+          <span class="tag">Selenium</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Postman scripts</span>
+          <span class="tag">Mocha / Chai</span>
+        </div>
+      </div>
+      <div class="skill-card" style="--skill-accent: #0f766e; --skill-bg: #ccfbf1;">
+        <div class="skill-head">
+          <div class="skill-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg></div>
+          <h3>API &amp; data</h3>
+        </div>
+        <div class="tag-row">
+          <span class="tag">Postman</span>
+          <span class="tag">SQL</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">DBeaver</span>
+          <span class="tag">BigQuery</span>
+        </div>
+      </div>
+      <div class="skill-card" style="--skill-accent: #b45309; --skill-bg: #fef3c7;">
+        <div class="skill-head">
+          <div class="skill-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <h3>Tracking &amp; collab</h3>
+        </div>
+        <div class="tag-row">
+          <span class="tag">Jira</span>
+          <span class="tag">Trello</span>
+          <span class="tag">Google Sheets</span>
+          <span class="tag">Firebase</span>
+        </div>
+      </div>
+      <div class="skill-card" style="--skill-accent: #be185d; --skill-bg: #fce7f3;">
+        <div class="skill-head">
+          <div class="skill-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <h3>Performance</h3>
+        </div>
+        <div class="tag-row">
+          <span class="tag">JMeter (basic)</span>
+        </div>
+      </div>
+      <div class="skill-card" style="--skill-accent: #b91c1c; --skill-bg: #fee2e2;">
+        <div class="skill-head">
+          <div class="skill-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+          <h3>Certifications</h3>
+        </div>
+        <div class="tag-row">
+          <span class="tag">QA Bootcamp '23</span>
+          <span class="tag">Postman API '25</span>
+          <span class="tag">Selenium + Node '25</span>
+          <span class="tag">JS Intermediate '25</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Work -->
+<section id="work">
+  <div class="wrap">
+    <span class="section-label">Work</span>
+    <h2 class="section-title">Selected QA artifacts</h2>
+    <p class="section-sub">
+      A mix of real (sanitized) and sample deliverables across test cases, defect reports, and automation. Click any card for the full detail.
+    </p>
+
+    <div class="suite-grid">
+
+      <!-- Card 1: Test Cases -->
+      <article class="suite-card" data-suite-open="memo-archive">
+        <div class="suite-cover">
+          <span class="suite-type" style="--type-bg: #e0e7ff; --type-fg: #1e3a8a;">Test case</span>
+          <div class="suite-cover-mock">
+            <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <filter id="suiteshadow1" x="-10%" y="-10%" width="120%" height="120%">
+                  <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#1e3a8a" flood-opacity="0.18"/>
+                </filter>
+              </defs>
+              <g transform="translate(35 30) rotate(-5 110 50)" filter="url(#suiteshadow1)">
+                <rect width="220" height="100" rx="10" fill="white" stroke="#e2e8f0"/>
+                <rect x="14" y="14" width="40" height="6" rx="2" fill="#1e3a8a"/>
+                <rect x="14" y="28" width="160" height="5" rx="2" fill="#cbd5e1"/>
+                <rect x="14" y="40" width="120" height="5" rx="2" fill="#cbd5e1" opacity="0.6"/>
+                <rect x="14" y="58" width="40" height="16" rx="8" fill="#dcfce7"/>
+                <text x="34" y="69" text-anchor="middle" font-size="9" font-weight="600" fill="#166534" font-family="Inter, sans-serif">Pass</text>
+                <rect x="60" y="58" width="58" height="16" rx="8" fill="#e0e7ff"/>
+                <text x="89" y="69" text-anchor="middle" font-size="9" font-weight="600" fill="#1e3a8a" font-family="Inter, sans-serif">Archive</text>
+              </g>
+              <g transform="translate(50 50) rotate(3 110 50)" filter="url(#suiteshadow1)">
+                <rect width="220" height="100" rx="10" fill="white" stroke="#e2e8f0"/>
+                <rect x="14" y="14" width="40" height="6" rx="2" fill="#1e3a8a"/>
+                <rect x="14" y="28" width="170" height="5" rx="2" fill="#cbd5e1"/>
+                <rect x="14" y="40" width="140" height="5" rx="2" fill="#cbd5e1" opacity="0.6"/>
+                <rect x="14" y="58" width="40" height="16" rx="8" fill="#dcfce7"/>
+                <text x="34" y="69" text-anchor="middle" font-size="9" font-weight="600" fill="#166534" font-family="Inter, sans-serif">Pass</text>
+                <rect x="60" y="58" width="46" height="16" rx="8" fill="#fef3c7"/>
+                <text x="83" y="69" text-anchor="middle" font-size="9" font-weight="600" fill="#92400e" font-family="Inter, sans-serif">Filter</text>
+              </g>
+            </svg>
+          </div>
+          <div class="suite-cover-meta">
+            <span>34 cases</span>
+            <span>100% pass</span>
+          </div>
+        </div>
+        <div class="suite-body">
+          <h3>Memo · Archive Module</h3>
+          <p class="suite-sub">Internal workspace platform · Web</p>
+          <p class="suite-desc">End-to-end functional testing for the Memo Archive submodule. 34 positive test cases across 5 functional groups, executed during SIT.</p>
+          <div class="tag-row" style="margin-bottom: 12px;">
+            <span class="tag">Manual</span>
+            <span class="tag">Functional</span>
+            <span class="tag">SIT</span>
+          </div>
+          <div class="suite-cta">View test suite &rarr;</div>
+        </div>
+      </article>
+
+      <!-- Card 2: Bug Report -->
+      <article class="suite-card" data-suite-open="bug-reports">
+        <div class="suite-cover cover-red">
+          <span class="suite-type" style="--type-bg: #fee2e2; --type-fg: #991b1b;">Bug report</span>
+          <div class="suite-cover-mock">
+            <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <filter id="suiteshadow2" x="-10%" y="-10%" width="120%" height="120%">
+                  <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#991b1b" flood-opacity="0.16"/>
+                </filter>
+              </defs>
+              <g transform="translate(35 30) rotate(-4 110 50)" filter="url(#suiteshadow2)">
+                <rect width="220" height="100" rx="10" fill="white" stroke="#fecaca"/>
+                <rect x="14" y="14" width="44" height="6" rx="2" fill="#991b1b"/>
+                <rect x="14" y="28" width="170" height="5" rx="2" fill="#cbd5e1"/>
+                <rect x="14" y="40" width="130" height="5" rx="2" fill="#cbd5e1" opacity="0.6"/>
+                <rect x="14" y="58" width="44" height="16" rx="8" fill="#fee2e2"/>
+                <text x="36" y="69" text-anchor="middle" font-size="9" font-weight="600" fill="#991b1b" font-family="Inter, sans-serif">High</text>
+                <rect x="64" y="58" width="56" height="16" rx="8" fill="#fef3c7"/>
+                <text x="92" y="69" text-anchor="middle" font-size="9" font-weight="600" fill="#92400e" font-family="Inter, sans-serif">Open</text>
+              </g>
+              <g transform="translate(50 55) rotate(4 110 50)" filter="url(#suiteshadow2)">
+                <rect width="220" height="100" rx="10" fill="white" stroke="#fecaca"/>
+                <rect x="14" y="14" width="44" height="6" rx="2" fill="#991b1b"/>
+                <rect x="14" y="28" width="160" height="5" rx="2" fill="#cbd5e1"/>
+                <rect x="14" y="40" width="130" height="5" rx="2" fill="#cbd5e1" opacity="0.6"/>
+                <rect x="14" y="58" width="56" height="16" rx="8" fill="#fef3c7"/>
+                <text x="42" y="69" text-anchor="middle" font-size="9" font-weight="600" fill="#92400e" font-family="Inter, sans-serif">Medium</text>
+                <rect x="76" y="58" width="50" height="16" rx="8" fill="#dcfce7"/>
+                <text x="101" y="69" text-anchor="middle" font-size="9" font-weight="600" fill="#166534" font-family="Inter, sans-serif">Fixed</text>
+              </g>
+            </svg>
+          </div>
+          <div class="suite-cover-meta">
+            <span>3 bugs</span>
+            <span>1 fixed</span>
+          </div>
+        </div>
+        <div class="suite-body">
+          <h3>E-commerce checkout defects</h3>
+          <p class="suite-sub">Sample defect reports · Lapakku (fake product)</p>
+          <p class="suite-desc">Three sample bug reports across checkout, cart, and search — written in the Jira format used on real engagements.</p>
+          <div class="tag-row" style="margin-bottom: 12px;">
+            <span class="tag">Jira format</span>
+            <span class="tag">Defect tracking</span>
+            <span class="tag">Sample</span>
+          </div>
+          <div class="suite-cta">View bug reports &rarr;</div>
+        </div>
+      </article>
+
+      <!-- Card 3: Postman -->
+      <article class="suite-card" data-suite-open="postman">
+        <div class="suite-cover cover-teal">
+          <span class="suite-type" style="--type-bg: #ccfbf1; --type-fg: #115e59;">Postman</span>
+          <div class="suite-cover-mock">
+            <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <filter id="suiteshadow3" x="-10%" y="-10%" width="120%" height="120%">
+                  <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#115e59" flood-opacity="0.16"/>
+                </filter>
+              </defs>
+              <g transform="translate(40 35)" filter="url(#suiteshadow3)">
+                <rect width="220" height="100" rx="10" fill="white" stroke="#99f6e4"/>
+                <rect x="14" y="16" width="36" height="18" rx="4" fill="#0f766e"/>
+                <text x="32" y="29" text-anchor="middle" font-size="10" font-weight="700" fill="white" font-family="Inter, sans-serif">POST</text>
+                <text x="58" y="29" font-size="11" font-weight="500" fill="#0f172a" font-family="JetBrains Mono, monospace">/orders</text>
+                <rect x="14" y="46" width="190" height="5" rx="2" fill="#cbd5e1"/>
+                <rect x="14" y="58" width="160" height="5" rx="2" fill="#cbd5e1" opacity="0.6"/>
+                <rect x="14" y="74" width="40" height="16" rx="8" fill="#dcfce7"/>
+                <text x="34" y="85" text-anchor="middle" font-size="9" font-weight="700" fill="#166534" font-family="JetBrains Mono, monospace">201</text>
+                <text x="62" y="85" font-size="9" font-weight="500" fill="#475569" font-family="Inter, sans-serif">3 assertions passed</text>
+              </g>
+            </svg>
+          </div>
+          <div class="suite-cover-meta">
+            <span>6 endpoints</span>
+            <span>Schema tests</span>
+          </div>
+        </div>
+        <div class="suite-body">
+          <h3>API test collection</h3>
+          <p class="suite-sub">Postman · JS scripts · Lapakku (fake product)</p>
+          <p class="suite-desc">End-to-end API tests for auth, products, cart, and checkout — with schema assertions, response-time guards, and a voucher-bug regression test.</p>
+          <div class="tag-row" style="margin-bottom: 12px;">
+            <span class="tag">Postman</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Sample</span>
+          </div>
+          <div class="suite-cta">View collection &rarr;</div>
+        </div>
+      </article>
+
+      <!-- Card 4: Selenium -->
+      <article class="suite-card" data-suite-open="selenium">
+        <div class="suite-cover cover-purple">
+          <span class="suite-type" style="--type-bg: #ede9fe; --type-fg: #5b21b6;">Automation</span>
+          <div class="suite-cover-mock">
+            <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <filter id="suiteshadow4" x="-10%" y="-10%" width="120%" height="120%">
+                  <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#5b21b6" flood-opacity="0.16"/>
+                </filter>
+              </defs>
+              <g transform="translate(35 30)" filter="url(#suiteshadow4)">
+                <rect width="230" height="110" rx="10" fill="#0f172a"/>
+                <circle cx="18" cy="16" r="4" fill="#ef4444"/>
+                <circle cx="32" cy="16" r="4" fill="#f59e0b"/>
+                <circle cx="46" cy="16" r="4" fill="#22c55e"/>
+                <text x="14" y="42" font-size="10" font-family="JetBrains Mono, monospace" fill="#93c5fd">it</text>
+                <text x="28" y="42" font-size="10" font-family="JetBrains Mono, monospace" fill="#86efac">'TC-01 valid login'</text>
+                <text x="14" y="58" font-size="10" font-family="JetBrains Mono, monospace" fill="#cbd5e1">  await login(...)</text>
+                <text x="14" y="74" font-size="10" font-family="JetBrains Mono, monospace" fill="#cbd5e1">  expect(url)</text>
+                <text x="14" y="90" font-size="10" font-family="JetBrains Mono, monospace" fill="#fbbf24">    .to.include</text>
+                <rect x="180" y="80" width="38" height="18" rx="9" fill="#dcfce7"/>
+                <text x="199" y="92" text-anchor="middle" font-size="9" font-weight="700" fill="#166534" font-family="Inter, sans-serif">✓ Pass</text>
+              </g>
+            </svg>
+          </div>
+          <div class="suite-cover-meta">
+            <span>3 tests</span>
+            <span>POM</span>
+          </div>
+        </div>
+        <div class="suite-body">
+          <h3>UI automation — login flow</h3>
+          <p class="suite-sub">Selenium · Node.js · Mocha &amp; Chai</p>
+          <p class="suite-desc">UI automation for a login flow covering happy path, invalid credentials, and field validation, using the Page Object Model.</p>
+          <div class="tag-row" style="margin-bottom: 12px;">
+            <span class="tag">Selenium</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Sample</span>
+          </div>
+          <div class="suite-cta">View script &rarr;</div>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Modal: Memo · Archive suite -->
+<div class="modal-overlay" id="modal-memo-archive" aria-hidden="true">
+  <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-memo-archive-title">
+    <header class="modal-head">
+      <div>
+        <h2 id="modal-memo-archive-title">Memo · Archive Module</h2>
+        <p>Internal workspace platform · Web · SIT phase</p>
+      </div>
+      <button class="modal-close" aria-label="Close test suite">&times;</button>
+    </header>
+
+    <div class="modal-body">
+
+      <!-- Section 01: Test Summary Report -->
+      <section class="modal-section">
+        <span class="modal-section-num">Section 01</span>
+        <h3 class="modal-section-title">Test Summary Report</h3>
+
+        <div class="table-scroll">
+          <table class="data-table">
+            <tbody>
+              <tr><td class="key">Project</td><td>Internal workspace platform <span style="color: var(--text-muted);">(client redacted)</span></td></tr>
+              <tr><td class="key">Module</td><td>Memo · Archive</td></tr>
+              <tr><td class="key">Test type</td><td>Functional · Positive</td></tr>
+              <tr><td class="key">Phase</td><td>SIT (System Integration Testing)</td></tr>
+              <tr><td class="key">Platform</td><td>Web</td></tr>
+              <tr><td class="key">Browser</td><td>Chrome (latest)</td></tr>
+              <tr><td class="key">Total cases</td><td>34</td></tr>
+              <tr><td class="key">Passed</td><td><span style="color: var(--success-text); font-weight: 600;">34</span></td></tr>
+              <tr><td class="key">Failed</td><td>0</td></tr>
+              <tr><td class="key">Blocked</td><td>0</td></tr>
+              <tr><td class="key">Pass rate</td><td><strong style="color: var(--text-primary);">100%</strong></td></tr>
+              <tr><td class="key">Scope</td><td>Functional testing of the Memo Archive submodule. Coverage spans the archive list display, label filtering and keyword search, memo detail view, info popup, and the unarchive flow for both Inbox and Outbox memos.</td></tr>
+              <tr><td class="key">Notes</td><td>Test cases were designed from the PRD and executed during SIT. Screenshots and client name omitted for confidentiality. Defects raised during the cycle were tracked in Jira and verified prior to release.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Breakdown by submodule</h4>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr><th>Submodule</th><th style="text-align: right;">Total</th><th style="text-align: right;">Passed</th><th style="text-align: right;">Failed</th><th style="text-align: right;">Pass rate</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Archive · List</td><td class="num">2</td><td class="num">2</td><td class="num">0</td><td class="num">100%</td></tr>
+              <tr><td>Archive · Filter &amp; Search</td><td class="num">15</td><td class="num">15</td><td class="num">0</td><td class="num">100%</td></tr>
+              <tr><td>Archive · Detail</td><td class="num">10</td><td class="num">10</td><td class="num">0</td><td class="num">100%</td></tr>
+              <tr><td>Archive · Detail · Info popup</td><td class="num">4</td><td class="num">4</td><td class="num">0</td><td class="num">100%</td></tr>
+              <tr><td>Archive · Detail · Unarchive</td><td class="num">3</td><td class="num">3</td><td class="num">0</td><td class="num">100%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section 02: Test Cases -->
+      <section class="modal-section">
+        <span class="modal-section-num">Section 02</span>
+        <h3 class="modal-section-title">Test Cases</h3>
+
+        <div class="table-scroll">
+          <table class="data-table tc-table">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Scenario</th>
+                <th>Description</th>
+                <th>Test steps</th>
+                <th>Expected result</th>
+                <th style="text-align: center;">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr class="group-row"><td colspan="6">Archive · List (2 cases)</td></tr>
+
+              <tr>
+                <td class="id-col">292</td>
+                <td class="scenario-col">Access Archive page from the Memo menu</td>
+                <td class="desc-col">Ensure the user can access the Archive page through the Memo menu.</td>
+                <td class="steps-col"><ol><li>Log in to the platform.</li><li>Click the Memo menu.</li><li>Click the Archive submenu.</li></ol></td>
+                <td class="expected-col">The Archive page opens correctly.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">293</td>
+                <td class="scenario-col">Open Archive page when no data exists (empty state)</td>
+                <td class="desc-col">Ensure the system shows an empty state when no archived memos exist.</td>
+                <td class="steps-col"><ol><li>Log in to the platform.</li><li>Go to Memo → Archive.</li><li>Check the total messages and unread count below the page title.</li></ol></td>
+                <td class="expected-col">Empty state is displayed.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+
+              <tr class="group-row"><td colspan="6">Archive · Filter &amp; Search (15 cases)</td></tr>
+
+              <tr>
+                <td class="id-col">294</td>
+                <td class="scenario-col">Filter memos by the Standard label</td>
+                <td class="desc-col">Ensure only memos with the Standard label are shown in the list.</td>
+                <td class="steps-col"><ol><li>Log in to the platform.</li><li>Go to Memo → Archive.</li><li>Click the Filter Label button.</li><li>Select the Standard option.</li></ol></td>
+                <td class="expected-col">Only memos with the Standard label appear in the list.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">295</td>
+                <td class="scenario-col">Filter memos by the Urgent label</td>
+                <td class="desc-col">Ensure only memos with the Urgent label are shown in the list.</td>
+                <td class="steps-col"><ol><li>Click the Filter Label button.</li><li>Select the Urgent option.</li></ol></td>
+                <td class="expected-col">Only memos with the Urgent label appear in the list.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">296</td>
+                <td class="scenario-col">Filter memos by the Confidential label</td>
+                <td class="desc-col">Ensure only memos with the Confidential label are shown in the list.</td>
+                <td class="steps-col"><ol><li>Click the Filter Label button.</li><li>Select the Confidential option.</li></ol></td>
+                <td class="expected-col">Only memos with the Confidential label appear in the list.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">297</td>
+                <td class="scenario-col">Filter memos by the General label</td>
+                <td class="desc-col">Ensure only memos with the General label are shown in the list.</td>
+                <td class="steps-col"><ol><li>Click the Filter Label button.</li><li>Select the General option.</li></ol></td>
+                <td class="expected-col">Only memos with the General label appear in the list.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">298</td>
+                <td class="scenario-col">Filter memos by the Finished label</td>
+                <td class="desc-col">Ensure only memos with the Finished label are shown in the list.</td>
+                <td class="steps-col"><ol><li>Click the Filter Label button.</li><li>Select the Finished option.</li></ol></td>
+                <td class="expected-col">Only memos with the Finished label appear in the list.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">299</td>
+                <td class="scenario-col">Filter memos by the PIC label</td>
+                <td class="desc-col">Ensure only memos with the PIC label are shown in the list.</td>
+                <td class="steps-col"><ol><li>Click the Filter Label button.</li><li>Select the PIC option.</li></ol></td>
+                <td class="expected-col">Only memos with the PIC label appear in the list.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">300</td>
+                <td class="scenario-col">Filter memos with a combination of multiple labels</td>
+                <td class="desc-col">Ensure only memos matching every selected filter label are shown.</td>
+                <td class="steps-col"><ol><li>Click the Filter Label button.</li><li>Select more than one label.</li></ol></td>
+                <td class="expected-col">The memos shown match the combination of labels selected.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">301</td>
+                <td class="scenario-col">Filter by label and keyword search simultaneously</td>
+                <td class="desc-col">Ensure the result list shows memos matching both the selected label and the search keyword.</td>
+                <td class="steps-col"><ol><li>Click the Filter Label button.</li><li>Select a label.</li><li>Enter a search keyword.</li></ol></td>
+                <td class="expected-col">Results show memos that match the selected label AND the keyword.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">302</td>
+                <td class="scenario-col">Clear an applied label filter</td>
+                <td class="desc-col">Ensure all memos are shown again once a label filter is removed.</td>
+                <td class="steps-col"><ol><li>Click the Filter Label button.</li><li>Apply a filter, then clear it.</li></ol></td>
+                <td class="expected-col">All memos are shown again after the label filter is removed.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">303</td>
+                <td class="scenario-col">Search memo by Memo Number</td>
+                <td class="desc-col">Ensure the system returns the memo matching the entered memo number.</td>
+                <td class="steps-col"><ol><li>Log in to the platform.</li><li>Go to Memo → Archive.</li><li>Enter a memo number in the search field.</li></ol></td>
+                <td class="expected-col">The system displays the memo matching the searched number.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">304</td>
+                <td class="scenario-col">Search memo by Subject</td>
+                <td class="desc-col">Ensure the system returns memos matching the entered subject keyword.</td>
+                <td class="steps-col"><ol><li>Enter a memo subject in the search field.</li></ol></td>
+                <td class="expected-col">The system displays memos matching the searched subject.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">305</td>
+                <td class="scenario-col">Search memo with a partial keyword</td>
+                <td class="desc-col">Ensure the system returns memos that contain a partial match of the keyword.</td>
+                <td class="steps-col"><ol><li>Enter a partial word in the search field.</li></ol></td>
+                <td class="expected-col">The system displays memos that contain the partial keyword.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">306</td>
+                <td class="scenario-col">Search is case-insensitive</td>
+                <td class="desc-col">Ensure the search ignores letter case (e.g. "urgent" and "Urgent" return the same results).</td>
+                <td class="steps-col"><ol><li>Enter the same keyword in different letter cases.</li></ol></td>
+                <td class="expected-col">Search is case-insensitive; results are identical.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">307</td>
+                <td class="scenario-col">Search memo with special characters or numbers</td>
+                <td class="desc-col">Ensure the system processes searches that include special characters or numbers if they appear in the memo title or body.</td>
+                <td class="steps-col"><ol><li>Enter a keyword containing special characters or numbers in the search field.</li></ol></td>
+                <td class="expected-col">The system processes the search and returns matching results.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">308</td>
+                <td class="scenario-col">Cleared search field restores full list</td>
+                <td class="desc-col">Ensure all memos are shown again once the search field is emptied.</td>
+                <td class="steps-col"><ol><li>Enter a keyword in the search field, then clear it.</li></ol></td>
+                <td class="expected-col">All memos are shown again when the search field is empty.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+
+              <tr class="group-row"><td colspan="6">Archive · Detail (10 cases)</td></tr>
+
+              <tr>
+                <td class="id-col">309</td>
+                <td class="scenario-col">Open an Inbox memo detail</td>
+                <td class="desc-col">Ensure the user can open the detail of an Inbox memo correctly.</td>
+                <td class="steps-col"><ol><li>Log in to the platform.</li><li>Go to Memo → Archive.</li><li>Click an Inbox memo.</li></ol></td>
+                <td class="expected-col">Memo detail is displayed.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">310</td>
+                <td class="scenario-col">Open an Outbox memo detail</td>
+                <td class="desc-col">Ensure the user can open the detail of an Outbox memo correctly.</td>
+                <td class="steps-col"><ol><li>Log in to the platform.</li><li>Go to Memo → Archive.</li><li>Click an Outbox memo.</li></ol></td>
+                <td class="expected-col">Memo detail is displayed.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">311</td>
+                <td class="scenario-col">View button on "To" recipients (expand/collapse)</td>
+                <td class="desc-col">Ensure the list of "To" recipients can be expanded and collapsed.</td>
+                <td class="steps-col"><ol><li>Open a memo detail.</li><li>Click the View button on the "To" section.</li></ol></td>
+                <td class="expected-col">The "To" recipient list expands or collapses accordingly.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">312</td>
+                <td class="scenario-col">"To" read-status — partial recipients have read</td>
+                <td class="desc-col">Ensure names of "To" recipients who have read the memo change color while others remain default.</td>
+                <td class="steps-col"><ol><li>Open a memo detail.</li><li>Check the "To" list when some recipients have read it.</li></ol></td>
+                <td class="expected-col">Names of "To" recipients who have read change color; the rest stay default.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">313</td>
+                <td class="scenario-col">"To" read-status — all recipients have read</td>
+                <td class="desc-col">Ensure all "To" recipient names change color when every recipient has read the memo.</td>
+                <td class="steps-col"><ol><li>Open a memo detail.</li><li>Check the "To" list when all recipients have read it.</li></ol></td>
+                <td class="expected-col">All "To" names change color.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">314</td>
+                <td class="scenario-col">View button on "Cc" recipients (expand/collapse)</td>
+                <td class="desc-col">Ensure the list of "Cc" recipients can be expanded and collapsed.</td>
+                <td class="steps-col"><ol><li>Open a memo detail.</li><li>Click the View button on the "Cc" section.</li></ol></td>
+                <td class="expected-col">The "Cc" recipient list expands or collapses accordingly.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">315</td>
+                <td class="scenario-col">"Cc" read-status — partial recipients have read</td>
+                <td class="desc-col">Ensure names of "Cc" recipients who have read change color while others remain default.</td>
+                <td class="steps-col"><ol><li>Open a memo detail.</li><li>Check the "Cc" list when some recipients have read it.</li></ol></td>
+                <td class="expected-col">Names of "Cc" recipients who have read change color; the rest stay default.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">316</td>
+                <td class="scenario-col">"Cc" read-status — all recipients have read</td>
+                <td class="desc-col">Ensure all "Cc" recipient names change color when every recipient has read the memo.</td>
+                <td class="steps-col"><ol><li>Open a memo detail.</li><li>Check the "Cc" list when all recipients have read it.</li></ol></td>
+                <td class="expected-col">All "Cc" names change color.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">317</td>
+                <td class="scenario-col">Download an attachment file</td>
+                <td class="desc-col">Ensure the user can download an attachment by clicking its file name.</td>
+                <td class="steps-col"><ol><li>Open a memo detail.</li><li>Click the attachment file name.</li></ol></td>
+                <td class="expected-col">The file downloads successfully.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">318</td>
+                <td class="scenario-col">Back button on memo detail returns to previous page</td>
+                <td class="desc-col">Ensure the system closes the memo detail page and returns to the previous page.</td>
+                <td class="steps-col"><ol><li>Open a memo detail.</li><li>Click the Back button.</li></ol></td>
+                <td class="expected-col">The detail closes and the user returns to the previous page.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+
+              <tr class="group-row"><td colspan="6">Archive · Detail · Info popup (4 cases)</td></tr>
+
+              <tr>
+                <td class="id-col">319</td>
+                <td class="scenario-col">Info button opens the Memo Info popup</td>
+                <td class="desc-col">Ensure the memo info is displayed correctly and matches data in the database.</td>
+                <td class="steps-col"><ol><li>Log in to the platform.</li><li>Go to Memo → Archive.</li><li>Open a memo.</li><li>Click the Info button.</li></ol></td>
+                <td class="expected-col">The Memo Info popup is displayed.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">320</td>
+                <td class="scenario-col">Verify Info popup data matches the database (Inbox &amp; Outbox)</td>
+                <td class="desc-col">Ensure name, date, position, department/division, and status in the Info popup match the database for both Inbox and Outbox memos.</td>
+                <td class="steps-col"><ol><li>Open the Info popup on an Inbox memo and an Outbox memo.</li><li>Compare name, date, position, department/division, and status against the database record.</li></ol></td>
+                <td class="expected-col">Info popup data matches the database record.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">321</td>
+                <td class="scenario-col">Verify Status field matches actual memo state</td>
+                <td class="desc-col">Ensure the memo Status (Disposition, Receiver, PIC, Not Disposition) reflects the actual state of the memo.</td>
+                <td class="steps-col"><ol><li>Open the Memo Info popup.</li><li>Check the Status field.</li></ol></td>
+                <td class="expected-col">Status matches the memo's actual state.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">322</td>
+                <td class="scenario-col">Close Info popup with X button</td>
+                <td class="desc-col">Ensure the user can close the Memo Info popup.</td>
+                <td class="steps-col"><ol><li>Open the Memo Info popup.</li><li>Click the X button.</li></ol></td>
+                <td class="expected-col">The Memo Info popup closes.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+
+              <tr class="group-row"><td colspan="6">Archive · Detail · Unarchive (3 cases)</td></tr>
+
+              <tr>
+                <td class="id-col">323</td>
+                <td class="scenario-col">Unarchive an Inbox memo from the detail page</td>
+                <td class="desc-col">Ensure the user can unarchive an Inbox memo through the detail page.</td>
+                <td class="steps-col"><ol><li>Log in to the platform.</li><li>Go to Memo → Archive.</li><li>Open a memo.</li><li>Click the Unarchive button.</li><li>Click Yes on the confirmation dialog.</li></ol></td>
+                <td class="expected-col">Unarchive succeeds; the memo returns to the Inbox.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">324</td>
+                <td class="scenario-col">Unarchive an Outbox memo from the detail page</td>
+                <td class="desc-col">Ensure the user can unarchive an Outbox memo through the detail page.</td>
+                <td class="steps-col"><ol><li>Log in to the platform.</li><li>Go to Memo → Archive.</li><li>Open a memo.</li><li>Click the Unarchive button.</li><li>Click Yes on the confirmation dialog.</li></ol></td>
+                <td class="expected-col">Unarchive succeeds; the memo returns to the Outbox.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">325</td>
+                <td class="scenario-col">Cancel an Unarchive action from the detail page</td>
+                <td class="desc-col">Ensure the user can cancel the unarchive flow from the detail page.</td>
+                <td class="steps-col"><ol><li>Log in to the platform.</li><li>Go to Memo → Archive.</li><li>Open a memo.</li><li>Click the Unarchive button.</li><li>Click No on the confirmation dialog.</li></ol></td>
+                <td class="expected-col">Unarchive is cancelled; the confirmation popup closes.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Bug Reports -->
+<div class="modal-overlay" id="modal-bug-reports" aria-hidden="true">
+  <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-bug-reports-title">
+    <header class="modal-head">
+      <div>
+        <h2 id="modal-bug-reports-title">E-commerce checkout defects</h2>
+        <p>Sample defect reports · Lapakku (fake product) · Jira format</p>
+      </div>
+      <button class="modal-close" aria-label="Close">&times;</button>
+    </header>
+    <div class="modal-body">
+
+      <section class="modal-section">
+        <span class="modal-section-num">Section 01</span>
+        <h3 class="modal-section-title">Defect Summary</h3>
+        <div class="table-scroll">
+          <table class="data-table">
+            <tbody>
+              <tr><td class="key">Project</td><td>Lapakku <span style="color: var(--text-muted);">(fake e-commerce, sample)</span></td></tr>
+              <tr><td class="key">Modules covered</td><td>Checkout · Cart · Search</td></tr>
+              <tr><td class="key">Total defects</td><td>3</td></tr>
+              <tr><td class="key">By severity</td><td>High: 1 · Medium: 1 · Low: 1</td></tr>
+              <tr><td class="key">By status</td><td>Open: 2 · Fixed: 1</td></tr>
+              <tr><td class="key">Format</td><td>Jira-style — title, severity, environment, steps, expected, actual, notes</td></tr>
+              <tr><td class="key">Notes</td><td>Demonstrates the bug-report format used on real engagements. Severity classification follows business impact; steps are written so a developer can reproduce without back-and-forth.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="modal-section">
+        <span class="modal-section-num">Section 02</span>
+        <h3 class="modal-section-title">Bug Reports</h3>
+        <div class="table-scroll">
+          <table class="data-table tc-table">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Title</th>
+                <th>Severity</th>
+                <th>Module</th>
+                <th>Steps to reproduce</th>
+                <th>Expected / Actual</th>
+                <th style="text-align: center;">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="id-col">BUG-01</td>
+                <td class="scenario-col">Voucher discount calculated against shipping fee instead of subtotal</td>
+                <td class="status-col"><span class="badge b-high">High</span></td>
+                <td class="desc-col">Checkout / Voucher engine</td>
+                <td class="steps-col"><ol><li>Add product with subtotal ≥ Rp 100,000 to cart.</li><li>Go to checkout.</li><li>Apply voucher <code>LAPAK10</code>.</li><li>Inspect order summary breakdown.</li></ol></td>
+                <td class="expected-col"><strong>Expected:</strong> 10% off subtotal (capped Rp 25,000), shipping unchanged.<br/><br/><strong>Actual:</strong> Discount applied to shipping row, dropping shipping to Rp 0. Subtotal unchanged.</td>
+                <td class="status-col"><span class="badge b-open">Open</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">BUG-02</td>
+                <td class="scenario-col">Cart quantity does not refresh when user returns from checkout via back button</td>
+                <td class="status-col"><span class="badge b-med">Medium</span></td>
+                <td class="desc-col">Cart</td>
+                <td class="steps-col"><ol><li>Add 2 units to cart.</li><li>Change quantity to 5, proceed to checkout.</li><li>Tap system back button on checkout.</li><li>Observe cart icon badge.</li></ol></td>
+                <td class="expected-col"><strong>Expected:</strong> Cart badge shows "5".<br/><br/><strong>Actual:</strong> Cart badge shows "2" (stale). Cart page shows "5" once re-opened. Repro 10/10 on Android, not on iOS.</td>
+                <td class="status-col"><span class="badge b-fixed">Fixed</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">BUG-03</td>
+                <td class="scenario-col">Search autocomplete surfaces deleted (inactive) products</td>
+                <td class="status-col"><span class="badge b-low">Low</span></td>
+                <td class="desc-col">Search / Autocomplete</td>
+                <td class="steps-col"><ol><li>Type a keyword matching a deleted product (status = inactive).</li><li>Observe autocomplete suggestions.</li><li>Click the suggested item.</li></ol></td>
+                <td class="expected-col"><strong>Expected:</strong> Inactive products excluded from autocomplete index.<br/><br/><strong>Actual:</strong> Inactive product appears in dropdown. Clicking leads to 404. Search index doesn't filter by <code>status = active</code> (confirmed via MongoDB query).</td>
+                <td class="status-col"><span class="badge b-open">Open</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Postman -->
+<div class="modal-overlay" id="modal-postman" aria-hidden="true">
+  <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-postman-title">
+    <header class="modal-head">
+      <div>
+        <h2 id="modal-postman-title">API test collection</h2>
+        <p>Postman · JS scripts · Lapakku (fake product)</p>
+      </div>
+      <button class="modal-close" aria-label="Close">&times;</button>
+    </header>
+    <div class="modal-body">
+
+      <section class="modal-section">
+        <span class="modal-section-num">Section 01</span>
+        <h3 class="modal-section-title">Collection Overview</h3>
+        <div class="table-scroll">
+          <table class="data-table">
+            <tbody>
+              <tr><td class="key">Project</td><td>Lapakku <span style="color: var(--text-muted);">(fake e-commerce, sample)</span></td></tr>
+              <tr><td class="key">Tool</td><td>Postman v10+</td></tr>
+              <tr><td class="key">Base URL</td><td><code>https://api.lapakku.dev/v1</code></td></tr>
+              <tr><td class="key">Auth method</td><td>Bearer token (chained from <code>POST /auth/login</code>)</td></tr>
+              <tr><td class="key">Modules</td><td>Auth · Products · Cart · Checkout</td></tr>
+              <tr><td class="key">Total requests</td><td>6 endpoints across 4 folders</td></tr>
+              <tr><td class="key">Test framework</td><td>JavaScript (<code>pm.test</code>, Chai assertions)</td></tr>
+              <tr><td class="key">Collection variables</td><td>5: <code>baseUrl</code>, <code>accessToken</code>, <code>userId</code>, <code>cartId</code>, <code>productId</code></td></tr>
+              <tr><td class="key">Notes</td><td>Schema assertions, response-time guards, chained variables (login → cart → checkout), and a regression test for BUG-01.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <a class="modal-download" href="lapakku-api-tests.postman_collection.json" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Download collection
+        </a>
+      </section>
+
+      <section class="modal-section">
+        <span class="modal-section-num">Section 02</span>
+        <h3 class="modal-section-title">Endpoints &amp; Assertions</h3>
+        <div class="table-scroll">
+          <table class="data-table tc-table">
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>Endpoint</th>
+                <th>Test scenario</th>
+                <th>Key assertions</th>
+                <th style="text-align: center;">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="group-row"><td colspan="5">Auth</td></tr>
+              <tr>
+                <td class="id-col"><strong>POST</strong></td>
+                <td class="scenario-col"><code>/auth/login</code></td>
+                <td class="desc-col">Login with valid credentials</td>
+                <td class="expected-col">Status 200 · Response schema (accessToken, refreshToken, user.id) · Response time &lt; 800ms · Tokens captured into collection vars.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col"><strong>POST</strong></td>
+                <td class="scenario-col"><code>/auth/login</code></td>
+                <td class="desc-col">Login with invalid password (negative)</td>
+                <td class="expected-col">Status 401 · Error code <code>INVALID_CREDENTIALS</code> · No token leaked in response body.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr class="group-row"><td colspan="5">Products</td></tr>
+              <tr>
+                <td class="id-col"><strong>GET</strong></td>
+                <td class="scenario-col"><code>/products/{id}</code></td>
+                <td class="desc-col">Fetch product detail</td>
+                <td class="expected-col">Status 200 · Required fields present (id, name, price, stock, sellerId) · Image URLs use HTTPS · Price &gt; 0, stock ≥ 0.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr class="group-row"><td colspan="5">Cart</td></tr>
+              <tr>
+                <td class="id-col"><strong>POST</strong></td>
+                <td class="scenario-col"><code>/cart/items</code></td>
+                <td class="desc-col">Add product to cart</td>
+                <td class="expected-col">Status 201 · Cart contains added product with correct quantity · Subtotal equals qty × unitPrice · cartId captured.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr class="group-row"><td colspan="5">Checkout</td></tr>
+              <tr>
+                <td class="id-col"><strong>POST</strong></td>
+                <td class="scenario-col"><code>/orders</code></td>
+                <td class="desc-col">Create order with voucher (BUG-01 regression)</td>
+                <td class="expected-col">Status 201 · <code>discount.appliedTo == 'subtotal'</code> · Shipping fee unchanged · Grand total = subtotal − discount + shipping · Order status <code>AWAITING_PAYMENT</code>.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="modal-section">
+        <span class="modal-section-num">Section 03</span>
+        <h3 class="modal-section-title">Sample test script</h3>
+        <div class="code-block">
+          <div class="code-head">
+            <span class="code-file">POST /orders — voucher regression test</span>
+            <div class="code-actions">
+              <button class="code-btn" data-copy="postman-snippet">Copy</button>
+            </div>
+          </div>
+<pre class="code" id="postman-snippet"><span class="c-com">// Regression for BUG-01 — discount must apply to subtotal, not shipping</span>
+<span class="c-fn">pm.test</span>(<span class="c-str">'Voucher discount applies to subtotal, not shipping'</span>, () =&gt; {
+  <span class="c-fn">pm.expect</span>(order.discount.appliedTo).to.eql(<span class="c-str">'subtotal'</span>);
+  <span class="c-fn">pm.expect</span>(order.shippingFee).to.eql(order.shippingFeeOriginal);
+});
+
+<span class="c-fn">pm.test</span>(<span class="c-str">'Grand total = subtotal - discount + shipping'</span>, () =&gt; {
+  <span class="c-key">const</span> expected = order.subtotal - order.discount.amount + order.shippingFee;
+  <span class="c-fn">pm.expect</span>(order.grandTotal).to.eql(expected);
+});
+
+<span class="c-fn">pm.test</span>(<span class="c-str">'Order status is AWAITING_PAYMENT'</span>, () =&gt; {
+  <span class="c-fn">pm.expect</span>(order.status).to.eql(<span class="c-str">'AWAITING_PAYMENT'</span>);
+});</pre>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Selenium -->
+<div class="modal-overlay" id="modal-selenium" aria-hidden="true">
+  <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-selenium-title">
+    <header class="modal-head">
+      <div>
+        <h2 id="modal-selenium-title">UI automation — login flow</h2>
+        <p>Selenium WebDriver · Node.js · Mocha &amp; Chai · Lapakku (fake product)</p>
+      </div>
+      <button class="modal-close" aria-label="Close">&times;</button>
+    </header>
+    <div class="modal-body">
+
+      <section class="modal-section">
+        <span class="modal-section-num">Section 01</span>
+        <h3 class="modal-section-title">Script Overview</h3>
+        <div class="table-scroll">
+          <table class="data-table">
+            <tbody>
+              <tr><td class="key">Project</td><td>Lapakku <span style="color: var(--text-muted);">(fake e-commerce, sample)</span></td></tr>
+              <tr><td class="key">Framework</td><td>Selenium WebDriver + Mocha + Chai</td></tr>
+              <tr><td class="key">Language</td><td>JavaScript (Node.js)</td></tr>
+              <tr><td class="key">Pattern</td><td>Page Object Model (POM)</td></tr>
+              <tr><td class="key">Browser</td><td>Chrome (headless)</td></tr>
+              <tr><td class="key">Locator strategy</td><td><code>data-testid</code> CSS selectors</td></tr>
+              <tr><td class="key">Total tests</td><td>3 (1 happy path, 2 negative)</td></tr>
+              <tr><td class="key">Coverage</td><td>Valid credentials · Invalid password · Empty email validation</td></tr>
+              <tr><td class="key">Notes</td><td>Page object encapsulates locators and actions. Tests use <code>async/await</code> with explicit waits (<code>until.urlContains</code>, <code>until.elementLocated</code>). Configurable base URL via env var.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <a class="modal-download" href="lapakku-login.spec.js" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Download script
+        </a>
+      </section>
+
+      <section class="modal-section">
+        <span class="modal-section-num">Section 02</span>
+        <h3 class="modal-section-title">Test Cases</h3>
+        <div class="table-scroll">
+          <table class="data-table tc-table">
+            <thead>
+              <tr>
+                <th>Test ID</th>
+                <th>Scenario</th>
+                <th>Action</th>
+                <th>Assertion</th>
+                <th style="text-align: center;">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="id-col">TC-01</td>
+                <td class="scenario-col">Redirects to <code>/home</code> when credentials are valid</td>
+                <td class="desc-col">Enter valid email + password, submit form, wait for URL change.</td>
+                <td class="expected-col">Current URL contains <code>/home</code> within 10s.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">TC-01b</td>
+                <td class="scenario-col">Shows inline error and stays on <code>/login</code> when password is wrong</td>
+                <td class="desc-col">Enter valid email + wrong password, submit form, read error banner.</td>
+                <td class="expected-col">Error text contains "email or password" · URL still contains <code>/login</code>.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+              <tr>
+                <td class="id-col">TC-01c</td>
+                <td class="scenario-col">Shows field-level error when email is empty</td>
+                <td class="desc-col">Leave email empty, enter password, submit form, read field error.</td>
+                <td class="expected-col">Field error matches <code>/email.*required/i</code>.</td>
+                <td class="status-col"><span class="badge b-pass">Pass</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="modal-section">
+        <span class="modal-section-num">Section 03</span>
+        <h3 class="modal-section-title">Sample code</h3>
+        <div class="code-block">
+          <div class="code-head">
+            <span class="code-file">lapakku-login.spec.js — page object + happy-path test</span>
+            <div class="code-actions">
+              <button class="code-btn" data-copy="selenium-snippet">Copy</button>
+            </div>
+          </div>
+<pre class="code" id="selenium-snippet"><span class="c-key">class</span> <span class="c-fn">LoginPage</span> {
+  <span class="c-fn">constructor</span>(driver) {
+    <span class="c-key">this</span>.driver = driver;
+    <span class="c-key">this</span>.locators = {
+      emailInput: By.css(<span class="c-str">'[data-testid="login-email"]'</span>),
+      passwordInput: By.css(<span class="c-str">'[data-testid="login-password"]'</span>),
+      submitBtn: By.css(<span class="c-str">'[data-testid="login-submit"]'</span>),
+    };
+  }
+
+  <span class="c-key">async</span> <span class="c-fn">login</span>(email, password) {
+    <span class="c-key">await</span> <span class="c-key">this</span>.driver.findElement(<span class="c-key">this</span>.locators.emailInput).sendKeys(email);
+    <span class="c-key">await</span> <span class="c-key">this</span>.driver.findElement(<span class="c-key">this</span>.locators.passwordInput).sendKeys(password);
+    <span class="c-key">await</span> <span class="c-key">this</span>.driver.findElement(<span class="c-key">this</span>.locators.submitBtn).click();
+  }
+}
+
+it(<span class="c-str">'TC-01 redirects to /home when credentials are valid'</span>, <span class="c-key">async</span> () =&gt; {
+  <span class="c-key">await</span> loginPage.login(<span class="c-str">'qa-tester@lapakku.dev'</span>, <span class="c-str">'Qa!Test1234'</span>);
+  <span class="c-key">await</span> driver.wait(until.urlContains(<span class="c-str">'/home'</span>), <span class="c-num">10000</span>);
+  expect(<span class="c-key">await</span> driver.getCurrentUrl()).to.include(<span class="c-str">'/home'</span>);
+});</pre>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- Experience -->
+<section id="experience" class="skills-section">
+  <div class="wrap">
+    <span class="section-label">Experience</span>
+    <h2 class="section-title">Where I've worked</h2>
+    <p class="section-sub">Four roles, two years, growing scope each time.</p>
+    <div class="timeline">
+
+      <div class="tl-entry">
+        <div class="tl-period">Feb 2026 — Present</div>
+        <div class="tl-content">
+          <div class="tl-role">Quality Assurance</div>
+          <div class="tl-company">PT Gemilang Bisnis Universal · Tangerang Selatan</div>
+          <ul class="tl-bullets">
+            <li>End-to-end testing (Web &amp; Android) across 3 client deployments in 2–3 week cycles.</li>
+            <li>Designed 500+ test scenarios across 4 user roles and 10–15 modules each; handed over to clients for UAT.</li>
+            <li>Reported 50+ bugs in the first two weeks with severity classification.</li>
+            <li>Postman API validation, MongoDB data validation, product presentations, training to 8 end users.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-period">Jan 2024 — Dec 2025</div>
+        <div class="tl-content">
+          <div class="tl-role">IT Quality Assurance</div>
+          <div class="tl-company">PT FAN Integrasi Teknologi · Bekasi</div>
+          <ul class="tl-bullets">
+            <li>Sole QA owning 7+ projects across Web, Android, iOS — UI, functional, regression, database, API.</li>
+            <li>Designed and executed 300+ structured test cases in Google Sheets &amp; Jira.</li>
+            <li>Ran SIT and UAT with clients; produced full test documentation and defect summaries.</li>
+            <li>Backend data validation via SQL; API validation via Postman.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-period">Jan 2023 — Apr 2023</div>
+        <div class="tl-content">
+          <div class="tl-role">Software QA Tester</div>
+          <div class="tl-company">Mayar.id · Bandung</div>
+          <ul class="tl-bullets">
+            <li>Wrote and executed test scripts derived from PRDs.</li>
+            <li>Manual testing, bug reports in Trello, cross-functional collaboration.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-period">Jul 2022 — Oct 2022</div>
+        <div class="tl-content">
+          <div class="tl-role">Software QA Intern</div>
+          <div class="tl-company">Mayar.id · Bandung</div>
+          <ul class="tl-bullets">
+            <li>Designed test scripts from PRDs, ran manual tests, reported bugs in Trello.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="contact-section">
+  <div class="wrap">
+    <div class="contact-card">
+      <span class="section-label">Contact</span>
+      <h2>Let's talk</h2>
+      <p>Open to QA roles — remote or Greater Jakarta. Reach me through any of these:</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:muharramf25@gmail.com">
+          <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="contact-meta">
+            <span class="contact-label">Email</span>
+            <span class="contact-value">muharramf25@gmail.com</span>
+          </div>
+        </a>
+        <a class="contact-link" href="https://linkedin.com/in/fazzamuharam" target="_blank" rel="noopener">
+          <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+          <div class="contact-meta">
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-value">fazzamuharam</span>
+          </div>
+        </a>
+        <a class="contact-link" href="tel:+6282318600547">
+          <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div class="contact-meta">
+            <span class="contact-label">Phone</span>
+            <span class="contact-value">+62 823 1860 0547</span>
+          </div>
+        </a>
+        <div class="contact-link" style="cursor: default;">
+          <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="contact-meta">
+            <span class="contact-label">Location</span>
+            <span class="contact-value">Bekasi, Indonesia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  Built by Muhamad Fazza Muharam <span class="dot"></span> Last updated June 2026 <span class="dot"></span> Bekasi, Indonesia
+</footer>
+
+<div class="toast" id="toast">Copied</div>
+
+<script>
+  // Expand / collapse artifact cards
+  document.querySelectorAll('.artifact-head').forEach(head => {
+    head.addEventListener('click', () => {
+      head.parentElement.classList.toggle('open');
+    });
+  });
+
+  // Suite card → open modal
+  document.querySelectorAll('[data-suite-open]').forEach(card => {
+    card.addEventListener('click', () => {
+      const id = 'modal-' + card.dataset.suiteOpen;
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+    });
+  });
+
+  // Close modal handlers
+  function closeAllModals() {
+    document.querySelectorAll('.modal-overlay.open').forEach(m => {
+      m.classList.remove('open');
+      m.setAttribute('aria-hidden', 'true');
+    });
+    document.body.classList.remove('modal-open');
+  }
+  document.querySelectorAll('.modal-close').forEach(btn => {
+    btn.addEventListener('click', closeAllModals);
+  });
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeAllModals();
+    });
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAllModals();
+  });
+
+  // Expand all / collapse all (inside modal)
+  const expandBtn = document.getElementById('expand-all');
+  const collapseBtn = document.getElementById('collapse-all');
+  const modalScope = document.getElementById('modal-memo-archive');
+  if (expandBtn && modalScope) {
+    expandBtn.addEventListener('click', () => {
+      modalScope.querySelectorAll('.artifact').forEach(a => a.classList.add('open'));
+    });
+  }
+  if (collapseBtn && modalScope) {
+    collapseBtn.addEventListener('click', () => {
+      modalScope.querySelectorAll('.artifact').forEach(a => a.classList.remove('open'));
+    });
+  }
+
+  // Copy-to-clipboard for code blocks
+  const toast = document.getElementById('toast');
+  let toastTimer;
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 1600);
+  }
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const target = document.getElementById(btn.dataset.copy);
+      if (!target) return;
+      try {
+        await navigator.clipboard.writeText(target.innerText);
+        showToast('Copied to clipboard');
+      } catch {
+        showToast('Copy failed');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
